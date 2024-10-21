@@ -29,6 +29,7 @@ def slice_selection_by_grid(image, drawable):
     group_layer = pdb.gimp_layer_group_new(image)
     pdb.gimp_item_set_name(group_layer, "Slices") # This name can be a variable
     pdb.gimp_image_insert_layer(image, group_layer, None, -1)
+    pdb.gimp_image_raise_item_to_top(image, group_layer)
 
     rows = int(math.ceil(height / grid_height))
     cols = int(math.ceil(width / grid_width))
