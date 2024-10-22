@@ -16,6 +16,7 @@ def slice_selection_by_grid(image, drawable):
         has_copied = pdb.gimp_edit_copy(drawable)
         if (not has_copied):
             pdb.gimp_message("No selection found!")
+            pdb.gimp_image_undo_group_end(image)
             return
 
         layer = pdb.gimp_edit_paste(drawable, True)
@@ -49,6 +50,7 @@ def slice_selection_by_grid(image, drawable):
     if (not is_selection_empty):
         pdb.gimp_floating_sel_remove(layer)
 
+    pdb.gimp_image_set_active_layer(image, group_layer)
     pdb.gimp_image_undo_group_end(image)
     pdb.gimp_displays_flush()
 
